@@ -27,24 +27,6 @@ int recv_msg(int sk, char* b){
     return i;
 }
 
-char* gerar_string_operacao() {
-    char op[10];
-    int num1, num2;
-
-    printf("Digite a operação desejada e os respectivos numeros: ");
-    scanf("%s", op);
-    scanf("%d", &num1);
-    scanf("%d", &num2);
-
-    printf("Operação: %s\n", op);
-    printf("Número 1: %d\n", num1);
-    printf("Número 2: %d\n", num2);
-
-    char* resultado = malloc(sizeof(char) * 20);
-    sprintf(resultado, "%s %d %d", op, num1, num2);  
-    return resultado;
-}
-
 int main(int argc, char *argv[])
 {
     int sockfd = 0, n = 0;
@@ -53,11 +35,20 @@ int main(int argc, char *argv[])
     const char client_hello[] = "client";
     char client_msg[20];
 
-    if(argc != 2)
+    // Check for the correct number of arguments
+    if(argc != 5)
     {
-        printf("\n Usage: %s <ip of server> \n",argv[0]);
+        printf("\n Usage: %s <ip of server> <operation> <number1> <number2> \n",argv[0]);
         return 1;
     } 
+
+    // Parse the operation and numbers from command line arguments
+    const char* operation = argv[2];
+    int number1 = atoi(argv[3]);
+    int number2 = atoi(argv[4]);
+
+    // Build the client message
+    snprintf(client_msg, sizeof(client_msg), "%s %d %d", operation, number1, number2);
 
     memset(recvBuff, 0,sizeof(recvBuff));
 
@@ -88,7 +79,6 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    strcpy(client_msg, gerar_string_operacao());
     printf("Enviando %s \n",client_msg);
     fflush(stdout);
 
