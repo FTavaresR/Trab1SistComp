@@ -1,5 +1,5 @@
 
 all:
-	gcc -o wworker wworker.c 
-	gcc -o clientee clientee.c
-	gcc -o server_t server_t.c -pthread
+	gcc -o worker worker.c 
+	gcc -o client client.c
+	gcc -o server server.c -pthread
