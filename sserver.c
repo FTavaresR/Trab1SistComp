@@ -74,6 +74,7 @@ No* busca_worker(No* head){
     return NULL;
 }
 
+
 void exit_handler(int);
 
 void exit_handler(int sig) {
