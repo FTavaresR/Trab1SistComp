@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     // Checa o número de argumentos necessários: execução, ip, operação, número 1, número 2
     if(argc != 5) 
     {
-        printf("\n Uso: %s <ip of server> <operation> <number1> <number2> \n",argv[0]);
+        printf("\n Formato de uso: %s <IP do server> <operacao> <numero1> <numero2> \n",argv[0]);
         return 1;
     } 
 
