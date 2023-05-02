@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "Digite o numero de clientes:"
 read clientes
 
